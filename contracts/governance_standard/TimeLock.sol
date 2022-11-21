@@ -20,13 +20,14 @@ contract TimeLock is TimelockController {
     constructor(
         uint256 minDelay,
         address[] memory proposers,
-        address[] memory executors
+        address[] memory executors,
+        address admin
     )
         TimelockController(
             minDelay,
             proposers,
             executors,
-            0x0000000000000000000000000000000000000000
+            admin
         )
     {}
 }

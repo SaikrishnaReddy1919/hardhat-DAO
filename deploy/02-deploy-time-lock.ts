@@ -14,7 +14,7 @@ const deployTimeLock: DeployFunction = async function (
     const { deployer } = await getNamedAccounts()
 
     log("Deploying Time lock...")
-    const args = [MIN_DELAY, [], []]
+    const args = [MIN_DELAY, [], [], deployer]
     const timeLockContract = await deploy("TimeLock",{
         from : deployer,
         args: args,
