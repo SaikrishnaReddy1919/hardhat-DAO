@@ -16,15 +16,21 @@ contract GovernorContract is
     GovernorVotesQuorumFraction,
     GovernorTimelockControl
 {
-    constructor(IVotes _token, TimelockController _timelock)
+    constructor(
+        IVotes _token,
+        TimelockController _timelock,
+        uint256 _votingDelay,
+        uint256 _votingPeriod,
+        uint256 _quorumPercentage /* quoram required to pass a proposal */
+    )
         Governor("GovernorContract")
         GovernorSettings(
-            1, /* 1 block */
-            50400, /* 1 week */
-            0
+            _votingDelay, /* 1 block */
+            _votingPeriod, /* 1 week */
+            0 /* Proposal threshold : min number of votes an accounts needs to have to create a proposal. We are keeping it to zero. So everyonce can create a proposal*/
         )
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(4)
+        GovernorVotesQuorumFraction(_quorumPercentage)
         GovernorTimelockControl(_timelock)
     {}
 
